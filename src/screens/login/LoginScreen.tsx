@@ -7,6 +7,7 @@ import Button, { State, Type } from '../../components/Button';
 import { useNavigation } from '@react-navigation/native';
 import { Api } from '../../network/api';
 import { useAuthStore } from '../../store/useAuthStore';
+import { validateEmail, validateURL } from '../../utills/commonUtils';
 
 type Errors = {
   url?: string;
@@ -30,23 +31,6 @@ const LoginScreen = () => {
       setButtonStatus({ state: 'default', type: 'primary' });
     }
   }, [email, errors, password, url])
-
-
-  const validateURL = (value: string) => {
-    if (!value) {
-      return false;
-    }
-    const pattern = /^(http[s]?:\/\/)?(www\.)?[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,}$/;
-    return pattern.test(value);
-  };
-
-  const validateEmail = (value: string) => {
-    if (!value) {
-      return false;
-    }
-    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return pattern.test(value);
-  };
 
   const handleLogin = async () => {
     let tempErrors: Errors = {};

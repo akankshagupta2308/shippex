@@ -12,3 +12,19 @@ export const getStatusColor = (status: string) => {
             return { bgColor: '#FEE3D4', textColor: '#d12030' };
     }
 };
+
+export const validateURL = (value: string) => {
+    if (!value) {
+        return false;
+    }
+    const pattern = /^(http[s]?:\/\/)?(www\.)?[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,}$/;
+    return pattern.test(value);
+};
+
+export const validateEmail = (value: string) => {
+    if (!value) {
+        return false;
+    }
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return pattern.test(value);
+};
